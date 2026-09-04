@@ -100,8 +100,20 @@ function replyFor(text) {
         return '¡Hola! ¿En qué puedo ayudarte?';
     }
 
-    if(["breda"].includes(normalized)) {
-        return "Vez q anda bvrenda";
+    if(["ninja"].includes(normalized)) {
+        return "Si, tenemos una kawasaki ninja 250 en muy buenas condiciones";
+    }
+
+    if(["gracias", "muchas gracias"].includes(normalized)) {
+        return "¡De nada! Estoy aquí para ayudarte.";
+    }
+
+    if(["la compro"].includes(normalized)){
+        return "Genial, ya la aparté para ti, en 5 minutos te contactaré.";
+    }
+    
+    if(["adios", "chao", "hasta luego"].includes(normalized)) {
+        return "¡Hasta luego! Que tengas un buen día.";
     }
 
     if (normalized === 'menu' || normalized === 'menú') {
