@@ -165,7 +165,10 @@ app.get('/webhook', (request, response) => {
     const token = request.query['hub.verify_token'];
     const challenge = request.query['hub.challenge'];
 
-    if (mode === 'subscribe' && token && token === webhookVerifyToken) return response.status(200).send(challenge);
+    if (mode === 'subscribe' && token && token === webhookVerifyToken){
+        console.log("Webhook verificado correctamente");
+        return response.status(200).send(challenge);
+    }
 
     return response.sendStatus(403);
 });
@@ -173,6 +176,11 @@ app.get('/webhook', (request, response) => {
 // Meta envía aquí los mensajes entrantes y los estados de entrega.
 app.post('/webhook', (request, response) => {
     if (!hasValidSignature(request)) return response.sendStatus(401);
+
+    console.log(
+        'Webhook recibido desde WhatsApp:',
+        JSON.stringify(request.body, null, 2),
+    );
 
     // Confirmamos rápido para que Meta no reintente mientras procesamos la respuesta.
     response.sendStatus(200);
