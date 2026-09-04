@@ -100,6 +100,10 @@ function replyFor(text) {
         return '¡Hola! ¿En qué puedo ayudarte?';
     }
 
+    if(["breda"].includes(normalized)) {
+        return "Vez q anda bvrenda";
+    }
+
     if (normalized === 'menu' || normalized === 'menú') {
         return 'Opciones disponibles:\n1. Consultar información\n2. Hablar con una persona';
     }
@@ -177,10 +181,10 @@ app.get('/webhook', (request, response) => {
 app.post('/webhook', (request, response) => {
     if (!hasValidSignature(request)) return response.sendStatus(401);
 
-    console.log(
+    /* console.log(
         'Webhook recibido desde WhatsApp:',
         JSON.stringify(request.body, null, 2),
-    );
+    ); */
 
     // Confirmamos rápido para que Meta no reintente mientras procesamos la respuesta.
     response.sendStatus(200);
